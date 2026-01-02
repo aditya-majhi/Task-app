@@ -9,6 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ag-ui/client": "^0.0.42",
+    "@copilotkit/react-core": "^1.50.1",
+    "@copilotkit/react-ui": "^1.50.1",
+    "@copilotkit/runtime": "^1.50.1",
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.89.0",
+    "axios": "^1.13.2",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"

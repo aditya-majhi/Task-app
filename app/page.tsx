@@ -1,3 +1,4 @@
+import { CopilotPopup } from "@copilotkit/react-ui";
 import Image from "next/image";
 
 export default function Home() {
@@ -59,6 +60,18 @@ export default function Home() {
             Documentation
           </a>
         </div>
+        <CopilotPopup
+          instructions={`
+            You are an embedded task management copilot.
+
+            You can:
+            - Summarize active tasks
+            - Suggest priorities
+            - Break vague tasks into subtasks
+
+            Respond concisely and clearly.
+          `}
+        />
       </main>
     </div>
   );
