@@ -7,7 +7,7 @@ export interface Task {
     description?: string;
     status: TaskStatus;
     priority: TaskPriority;
-    due_date?: string; // ISO date string
+    due_date?: string;
 }
 
 export interface CreateTaskInput {
