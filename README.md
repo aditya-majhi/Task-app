@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Management App with Embedded AI Copilot
 
-## Getting Started
+This project is a lightweight task management application with an **embedded, context-aware AI copilot**.  
+The copilot helps users understand and manage their tasks by summarizing active work, suggesting priorities, and breaking down vague tasks into actionable steps.
 
-First, run the development server:
+The emphasis of this project is on **thoughtful interaction design**, **frontend-first architecture**, and **responsible AI usage**, rather than complex backend agent orchestration.
+
+---
+
+## Features
+
+### Core Task Management
+
+- Create, update, and delete tasks
+- Simple and clear task schema
+- Persistent storage using Supabase
+
+### AI Copilot
+
+- Embedded chat UI (not a floating button)
+- Context-aware (receives current tasks as readable context)
+- Can:
+  - Summarize active tasks
+  - Suggest priorities
+  - Break vague tasks into actionable subtasks (reasoning only)
+- Optional task creation through conversation
+- Human-in-the-loop data collection for missing fields
+
+---
+
+## Tech Stack
+
+**Frontend**
+
+- Next.js (App Router)
+- TypeScript
+- CopilotKit
+- Axios
+
+**Backend**
+
+- Next.js API routes
+- Supabase (PostgreSQL)
+
+**AI**
+
+- Google Gemini (via CopilotKit adapter)
+
+## Setup Instructions
+
+Follow the steps below to set up the project locally.
+
+---
+
+### Clone the Repository
+
+```bash
+git clone <repository-url>
+cd task-management-copilot
+```
+
+### Install Dependencies
+
+```bash
+npm i
+```
+
+### Supabase Setup
+
+- Create a Supabase Project
+- Go to https://supabase.com
+- Sign in or create an account
+- Click “New Project”
+- Choose a project name and region
+- Set a database password and create the project
+
+- Create Tasks Table
+- After successful Project creation run
+
+```sql
+create table tasks (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  description text,
+  status text not null,
+  priority text not null,
+  created_at timestamp with time zone default now()
+);
+```
+
+- Then go to supabase Project Setting select Data API, and set like below
+
+```bash
+SUPABASE_URL=YOUR SUPABASE URL
+```
+
+- Then select API Keys in Project settings, and select the tab "Legacy anon, service_role API keys" and copy the service role api key and set like below
+
+```bash
+SUPABASE_SERVICE_ROLE_KEY=YOUR SUPABASE SERVICE ROLE KEY
+```
+
+### Google Gemini API key
+
+- Visit https://aistudio.google.com
+- Sign in with a Google account
+- Click “Get API key”
+- Create a new API key
+- Copy the generated key
+- And set as below
+
+```bash
+GOOGLE_GENERATIVE_AI_API_KEY=YOUR GOOGLE GEMINI API KEY
+```
+
+### Start the project
+
+Now run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
